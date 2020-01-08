@@ -70,7 +70,6 @@ class PostForm extends Component {
       message,
       editing: false,
     }
-    // console.log(data)
     this.props.dispatch(
       {
         type:'ADD_POST',
