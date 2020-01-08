@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
 
 import Post from './Post';
+import EditComponent from './EditComponent';
 
 const styles = StyleSheet.create({
 
@@ -13,7 +14,11 @@ class  AllPost extends Component {
   render() {
 
     const postList = this.props.posts.postReducer.map(post => (
-      <Post key={post.id} post={post} />
+      <View key={post.id}>
+        {post.editing ? 
+          <EditComponent post={post} key={post.id} /> : <Post key={post.id} post={post} />
+        }
+      </View>
     ));
 
     return (

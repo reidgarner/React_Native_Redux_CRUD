@@ -18,8 +18,7 @@ class Post extends Component {
 
 
       <TouchableOpacity
-        // onPress={}
-      >
+        onPress={()=>this.props.dispatch({type:'EDIT_POST',id:this.props.post.id})}      >
         <Text>EDIT</Text>
       </TouchableOpacity>
 
