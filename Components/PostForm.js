@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import { 
   StyleSheet,
   View,
   Text,
   TextInput,
-  Button,
   TouchableOpacity,
 } from 'react-native';
 
@@ -58,30 +58,46 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function PostForm(props) {
-  const {
-  } = props;
+class PostForm extends Component {
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const title = this.getTitle;
+    const message =  this.getMessage;
+    const data = {
+      id: new Date(),
+      title,
+      message
+    }
+    console.log(data)
+  }
 
+  render() {
   return (
-    <View style={styles.createContainer}>
-      <Text style={styles.title}>Create Post</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Enter Post Title"
-      />
-      <TextInput
-        style={styles.multilineInput}
-        multiline
-        placeholder="Enter Post"
-      />
-      <TouchableOpacity
-        style={styles.button}
-      >
-        <Text style={styles.buttonLabel}>Post</Text>
-      </TouchableOpacity>
-    </View>
-  );
+      <View style={styles.createContainer}>
+        <Text style={styles.title}>Create Post</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter Post Title"
+          onChangeText={(input)=>this.getTitle = input}
+        />
+        <TextInput
+          style={styles.multilineInput}
+          multiline
+          placeholder="Enter Post"
+          onChangeText={(input)=>this.getMessage = input}
+        />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={this.handleSubmit}
+        >
+          <Text style={styles.buttonLabel}>Post</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
 }
+
+export default PostForm;
 
 PostForm.propTypes = {
 };
