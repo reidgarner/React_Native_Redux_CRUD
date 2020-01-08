@@ -18,6 +18,8 @@ import {
 
 import PostForm from 'React_Native_Redux_CRUD/Components/PostForm';
 import AllPost from 'React_Native_Redux_CRUD/Components/AllPost';
+import { Provider } from 'react-redux';
+import store from 'React_Native_Redux_CRUD/redux/store';
 
 const styles = StyleSheet.create({
   container: {
@@ -45,14 +47,16 @@ const styles = StyleSheet.create({
 
 const App: () => React$Node = () => {
   return (
-    <View style={styles.container}>
-      <View style={styles.topHalf}>
-        <PostForm />
+    <Provider store={store}>
+      <View style={styles.container}>
+        <View style={styles.topHalf}>
+          <PostForm />
+        </View>
+        <View style={styles.bottomHalf}>
+          <AllPost />
+        </View>
       </View>
-      <View style={styles.bottomHalf}>
-        <AllPost />
-      </View>
-    </View>
+    </Provider>
   );
 };
 

@@ -1,3 +1,4 @@
+import { combineReducers } from 'redux';
 import postReducer from './post_reducer';
 
 const appReducer = combineReducers({

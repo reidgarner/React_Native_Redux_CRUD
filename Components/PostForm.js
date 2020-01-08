@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { 
@@ -66,9 +67,18 @@ class PostForm extends Component {
     const data = {
       id: new Date(),
       title,
-      message
+      message,
+      editing: false,
     }
-    console.log(data)
+    // console.log(data)
+    this.props.dispatch(
+      {
+        type:'ADD_POST',
+        data
+      }
+    );
+    this.getTitle = '';
+    this.getMessage = '';
   }
 
   render() {
@@ -78,13 +88,13 @@ class PostForm extends Component {
         <TextInput
           style={styles.input}
           placeholder="Enter Post Title"
-          onChangeText={(input)=>this.getTitle = input}
+          onChangeText={(input)=> this.getTitle = input}
         />
         <TextInput
           style={styles.multilineInput}
           multiline
           placeholder="Enter Post"
-          onChangeText={(input)=>this.getMessage = input}
+          onChangeText={(input)=> this.getMessage = input}
         />
         <TouchableOpacity
           style={styles.button}
@@ -97,7 +107,7 @@ class PostForm extends Component {
   }
 }
 
-export default PostForm;
+export default connect()(PostForm);
 
 PostForm.propTypes = {
 };
