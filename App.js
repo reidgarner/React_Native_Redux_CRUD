@@ -28,20 +28,30 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   topHalf: {
-    flex: 1,
+    flex: 3,
     width: '100%',
-    borderWidth: 2,
-    borderColor: 'pink',
+    // borderWidth: 2,
+    // borderColor: 'pink',
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 20,
+  },
+  postForm: {
+    flex: 1,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    top: 25,
   },
   bottomHalf: {
-    flex: 1,
+    flex: 4,
     width: '100%',
-    borderWidth: 2,
-    borderColor: 'green',
-    justifyContent: 'center',
-    alignItems: 'center',
+    // borderWidth: 2,
+    // borderColor: 'green',
+    padding: 20,
+    // justifyContent: 'center',
+    // alignItems: 'center',
   },
 });
 
@@ -50,7 +60,9 @@ const App: () => React$Node = () => {
     <Provider store={store}>
       <View style={styles.container}>
         <View style={styles.topHalf}>
-          <PostForm />
+          <View style={styles.postForm}>
+            <PostForm/>
+          </View>
         </View>
         <View style={styles.bottomHalf}>
           <AllPost />
@@ -62,4 +74,4 @@ const App: () => React$Node = () => {
 
 export default App;
 
-// console.disableYellowBox = true;
+console.disableYellowBox = true;
