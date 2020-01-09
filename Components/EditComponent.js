@@ -56,37 +56,39 @@ const styles = StyleSheet.create({
 });
 
 class EditComponent extends Component {
-handleEdit = () => {
-  const newTitle = this.getTitle;
-  const newMessage = this.getMessage;
-  const data = {
-    newTitle,
-    newMessage
+  handleEdit = () => {
+    const newTitle = this.getTitle;
+    const newMessage = this.getMessage;
+    const data = {
+      newTitle,
+      newMessage
+    }
+    this.props.dispatch({ type: 'UPDATE', id: this.props.post.id, data: data })
   }
-  this.props.dispatch({ type: 'UPDATE', id: this.props.post.id, data: data })
-}
-render() {
-return (
-<View style={styles.container}>
-    <TextInput
-      placeholder="Enter Post Title"
-      onChangeText={(input)=> this.getTitle = input}
-      style={styles.input}
-    />
-    <TextInput
-      multiline
-      placeholder="Enter Post"
-      onChangeText={(input)=> this.getMessage = input}
-      style={styles.multilineInput}
-    />
-    <TouchableOpacity
-      onPress={this.handleEdit}
-      style={styles.button}
-    >
-      <Text>Update</Text>
-  </TouchableOpacity>
-</View>
-);
-}
+  render() {
+    return (
+      <View style={styles.container}>
+        <TextInput
+          placeholder="Enter Post Title"
+          onChangeText={(input)=> this.getTitle = input}
+          style={styles.input}
+          defaultValue={this.props.post.title}
+        />
+        <TextInput
+          multiline
+          placeholder="Enter Post"
+          onChangeText={(input)=> this.getMessage = input}
+          style={styles.multilineInput}
+          defaultValue={this.props.post.message}
+        />
+        <TouchableOpacity
+          onPress={this.handleEdit}
+          style={styles.button}
+        >
+          <Text>Update</Text>
+        </TouchableOpacity>
+      </View>
+    );
+    }
 }
 export default connect()(EditComponent);
