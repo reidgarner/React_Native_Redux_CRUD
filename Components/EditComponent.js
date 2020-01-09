@@ -57,8 +57,8 @@ const styles = StyleSheet.create({
 
 class EditComponent extends Component {
   handleEdit = () => {
-    const newTitle = this.getTitle;
-    const newMessage = this.getMessage;
+    const newTitle = this.getTitle || this.props.post.title;
+    const newMessage = this.getMessage || this.props.post.message;
     const data = {
       newTitle,
       newMessage
