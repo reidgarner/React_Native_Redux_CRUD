@@ -16,11 +16,9 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'red',
   },
   title: {
-    fontSize: 24,
+    fontSize: 30,
   },
   input: {
     borderWidth: 1,
@@ -28,7 +26,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginTop: 10,
     marginBottom: 10,
-    width: '70%',
+    width: '80%',
     paddingLeft: 10,
     paddingRight: 10,
     paddingTop: 5,
@@ -37,8 +35,8 @@ const styles = StyleSheet.create({
   multilineInput: {
     borderWidth: 1,
     borderColor: 'gray',
-    height: '40%',
-    width: '70%',
+    height: '50%',
+    width: '80%',
     borderRadius: 5,
     marginBottom: 10,
     paddingLeft: 10,
@@ -60,8 +58,7 @@ const styles = StyleSheet.create({
 });
 
 class PostForm extends Component {
-  handleSubmit = (e) => {
-    e.preventDefault();
+  handleSubmit = () => {
     const title = this.getTitle;
     const message =  this.getMessage;
     const data = {
@@ -88,16 +85,22 @@ class PostForm extends Component {
           style={styles.input}
           placeholder="Enter Post Title"
           onChangeText={(input)=> this.getTitle = input}
+          ref={input => { this.titleInput = input }}
         />
         <TextInput
           style={styles.multilineInput}
           multiline
           placeholder="Enter Post"
           onChangeText={(input)=> this.getMessage = input}
+          ref={input => { this.postInput = input }}
         />
         <TouchableOpacity
           style={styles.button}
-          onPress={this.handleSubmit}
+          onPress={() => {
+            this.handleSubmit();
+            this.titleInput.clear();
+            this.postInput.clear();
+          }}
         >
           <Text style={styles.buttonLabel}>Post</Text>
         </TouchableOpacity>
